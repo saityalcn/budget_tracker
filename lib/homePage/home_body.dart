@@ -86,26 +86,24 @@ class HomeBodyState extends State{
 
   Widget buildListItem() {
     double price = 12.89;
-    return InkWell(
+    return ListTile(
       onTap: () {
         Navigator.pushNamed(context, '/expenseDetailPage');
       },
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.grey.withOpacity(0.2),
-        ),
-        title: Text(
-          "Migros",
-          style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text("Sait (Harcama Yapanın Adı)"),
-        trailing: Text(
-          price.toString(),
-          style: TextStyle(
-              color: Color(0xFF000000),
-              fontWeight: FontWeight.bold,
-              fontSize: 18.0),
-        ),
+      leading: CircleAvatar(
+        backgroundColor: Colors.grey.withOpacity(0.2),
+      ),
+      title: Text(
+        "Migros",
+        style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+      ),
+      subtitle: Text("Sait (Harcama Yapanın Adı)"),
+      trailing: Text(
+        "₺" + price.toString(),
+        style: const TextStyle(
+            color: Color(0xFF000000),
+            fontWeight: FontWeight.bold,
+            fontSize: 18.0),
       ),
     );
   }

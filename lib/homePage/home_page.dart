@@ -1,7 +1,8 @@
 import 'package:budget_tracker/expensePage/appBar.dart';
+import 'package:budget_tracker/monthlySumPage/monthly_sum_page.dart';
+import 'package:budget_tracker/usersPage/users_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'appbar.dart';
 import 'expenses_page.dart';
 import 'home_body.dart';
@@ -18,8 +19,8 @@ class HomeScreenState extends State {
   static List<Widget> _bodyOptions = <Widget>[
     HomeBody(),
     ExpensesPage(),
-    HomeBody(),
-    ExpensesPage(),
+    MonthlySumPage(),
+    UsersPage(),
   ];
   static List<AppBar> _appBarOptions = <AppBar>[
     HomeAppBar(),
@@ -36,7 +37,8 @@ class HomeScreenState extends State {
         onPressed: () {
           Navigator.pushNamed(context, '/add-expense');
         },
-        child: Icon(Icons.add,size: 22,),
+        child: const Icon(Icons.add,size: 22,),
+        backgroundColor: Color(0xFF171645),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
       bottomNavigationBar: buildBottomNavigationBar()
@@ -48,24 +50,24 @@ class HomeScreenState extends State {
       iconTheme: IconThemeData(color: Colors.black54),
       backgroundColor: Colors.white,
       shadowColor: Colors.transparent,
-      title: Center(
-          child: Text(
+      centerTitle: true,
+      title: Text(
         "LOGO",
-        style: TextStyle(
-            color: Colors.black,
-            letterSpacing: 2.0,
-            fontWeight: FontWeight.w800,
-            fontSize: 20.0),
-      )),
+        style: const TextStyle(
+        color: Colors.black,
+        letterSpacing: 2.0,
+        fontWeight: FontWeight.w800,
+        fontSize: 20.0),
+      ),
       actions: [
         CircleAvatar(
-          child: Icon(
+          child: const Icon(
             Icons.person,
             color: Colors.white,
           ),
           backgroundColor: Color(0xFF646464).withOpacity(0.3),
         ),
-        SizedBox(width: 10.0)
+        const SizedBox(width: 10.0)
       ],
     );
   }
@@ -98,7 +100,7 @@ class HomeScreenState extends State {
       items: [
         buildBottomNavigationBarButton(Icons.home, "Ana Sayfa"),
         buildBottomNavigationBarButton(Icons.receipt_long, "Harcamalar"),
-        buildBottomNavigationBarButton(Icons.history, "Geçmiş"),
+        buildBottomNavigationBarButton(Icons.history, "Aylık Özet"),
         buildBottomNavigationBarButton(Icons.supervised_user_circle_sharp, "Kullanıcılar"),
       ],
       currentIndex: _selectedIndex,

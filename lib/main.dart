@@ -1,6 +1,5 @@
 import 'package:budget_tracker/addExpensePage/add_expense_page.dart';
 import 'package:flutter/material.dart';
-
 import 'expensePage/expense_page.dart';
 import 'homePage/home_page.dart';
 
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
         "/add-expense": (context) => AddExpensePage(),
       },
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
       home: HomeScreen(),
     );
