@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ExpensesPage extends StatefulWidget {
+class ExpensesPageBody extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return ExpensesPageState();
+    return ExpensesPageBodyState();
   }
 }
 
-class ExpensesPageState extends State {
+class ExpensesPageBodyState extends State {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -31,13 +31,7 @@ class ExpensesPageState extends State {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "$date",
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w800),
-          ),
+          buildExpensesWithDayHeader(date,38.67),
           const SizedBox(height: 10.0),
           buildExpenseListElement(),
           buildExpenseListElement(),
@@ -47,6 +41,27 @@ class ExpensesPageState extends State {
     );
   }
 
+  Widget buildExpensesWithDayHeader(String date, double totalExpense){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "$date",
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 18.0,
+              fontWeight: FontWeight.w800),
+        ),
+        /*Text(
+          "₺${totalExpense.toString()}",
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 18.0,
+              fontWeight: FontWeight.w800),
+        ),*/
+      ],
+    );
+  }
   Widget buildExpenseListElement() {
     double price = 12.89;
     return ListTile(
@@ -54,6 +69,7 @@ class ExpensesPageState extends State {
         Navigator.pushNamed(context, '/expenseDetailPage');
       },
       leading: CircleAvatar(
+        child: Image.network("https://pbs.twimg.com/profile_images/1465239664802025477/W7BQLaN2_400x400.jpg"),
         backgroundColor: Colors.grey.withOpacity(0.2),
       ),
       title: Text(

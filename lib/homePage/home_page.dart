@@ -4,7 +4,7 @@ import 'package:budget_tracker/usersPage/users_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'appbar.dart';
-import 'expenses_page.dart';
+import 'expenses_page_body.dart';
 import 'home_body.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,48 +16,42 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State {
   int _selectedIndex = 0;
-  static List<Widget> _bodyOptions = <Widget>[
+  final List<Widget> _bodyOptions = <Widget>[
     HomeBody(),
-    ExpensesPage(),
+    ExpensesPageBody(),
     MonthlySumPage(),
     UsersPage(),
   ];
-  static List<AppBar> _appBarOptions = <AppBar>[
+
+  final List<AppBar> _appBarOptions = <AppBar>[
     HomeAppBar(),
     ExpensesPageAppBar(),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
-      body: buildBody(),
-      drawer: buildDrawer(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/add-expense');
-        },
-        child: const Icon(Icons.add,size: 22,),
-        backgroundColor: Color(0xFF171645),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
-      bottomNavigationBar: buildBottomNavigationBar()
-    );
+        appBar: buildAppBar(),
+        body: buildBody(),
+        drawer: buildDrawer(),
+        floatingActionButton: buildFloatingActionButton(),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.miniCenterDocked,
+        bottomNavigationBar: buildBottomNavigationBar());
   }
 
   AppBar buildAppBar() {
     return AppBar(
-      iconTheme: IconThemeData(color: Colors.black54),
+      iconTheme: const IconThemeData(color: Colors.black54),
       backgroundColor: Colors.white,
       shadowColor: Colors.transparent,
       centerTitle: true,
-      title: Text(
+      title: const Text(
         "LOGO",
-        style: const TextStyle(
-        color: Colors.black,
-        letterSpacing: 2.0,
-        fontWeight: FontWeight.w800,
-        fontSize: 20.0),
+        style: TextStyle(
+            color: Colors.black,
+            letterSpacing: 2.0,
+            fontWeight: FontWeight.w800,
+            fontSize: 20.0),
       ),
       actions: [
         CircleAvatar(
@@ -65,7 +59,7 @@ class HomeScreenState extends State {
             Icons.person,
             color: Colors.white,
           ),
-          backgroundColor: Color(0xFF646464).withOpacity(0.3),
+          backgroundColor: const Color(0xFF646464).withOpacity(0.3),
         ),
         const SizedBox(width: 10.0)
       ],
@@ -74,19 +68,113 @@ class HomeScreenState extends State {
 
   Drawer buildDrawer() {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
-          DrawerHeader(child: ListTile(title: Text("Menu"),trailing: IconButton(icon:Icon(Icons.close),onPressed: (){Navigator.pop(context);},),)),
-          ListTile(title: Text("1")),
-          ListTile(title:  Text("2"),),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                buildDrawerHeader(),
+                buildDrawerListElement("Anasayfa","/home"),
+                buildDrawerListElement("Hesap","/home"),
+                buildDrawerListElement("Gruplarım","/groups-page"),
+                buildDrawerListElement("Profil","/home"),
+                buildDrawerListElement("Hakkımızda","/home"),
+                buildDrawerListElement("Sorun Bildir","/home"),
+              ],
+            ),
+          ),
+          buildDrawerFooter(),
         ],
       ),
     );
   }
 
+  DrawerHeader buildDrawerHeader() {
+    String name = "Ahmet";
+    return DrawerHeader(
+        decoration: const BoxDecoration(color: Color(0xFF171645)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ListTile(
+              title: Text(
+                "Merhaba, $name",
+                style: TextStyle(color: Colors.white,fontSize: 18.0,fontWeight: FontWeight.w800),
+              ),
+              trailing: IconButton(
+                icon: const Icon(
+                  Icons.close,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+            /*
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Üyelikler",style: TextStyle(color: Colors.white),),
+                TextButton(
+                  onPressed: (){},
+                  child: Row(
+                    children: [
+                      Text("Tümü"),
+                      Icon(Icons.arrow_forward),
+                    ],
+                  ),
+                ),
+              ],
+            ),*/
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  buildSubscriptionListItem("https://www.zorluenerji.com.tr/uploads/img/logo/zorlu-energy-solutions.png"),
+                  buildSubscriptionListItem("https://www.sisecam.com.tr/tr/PublishingImages/news-room/logos/Sisecam_Logo.png"),
+                  buildSubscriptionListItem("https://bayraks.net/wp-content/uploads/bb-logo-turkish-airlines-beyaz.jpg"),
+                  buildSubscriptionListItem("https://marka-logo.com/wp-content/uploads/2020/11/Tesla-Logo.png"),
+                ],
+              ),
+            ),
+          ],
+        )
+    );
+  }
 
-  Widget buildBody(){
+  buildSubscriptionListItem(String linkOfImage){
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 4.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Image.network(linkOfImage,height: 40.0,),
+      ),
+    );
+  }
+
+  buildDrawerListElement(String title,String routeName){
+    return ListTile(
+      title: Text(title),
+      onTap:(){
+        Navigator.pushNamed(context, routeName);
+      }
+    );
+  }
+
+  Widget buildDrawerFooter(){
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 10.0),
+      child: Text("\u00a9 ST Software Solutions\nAll Rights Reserved",textAlign: TextAlign.center,),
+    );
+  }
+
+  Widget buildBody() {
     return _bodyOptions[_selectedIndex];
   }
 
@@ -101,7 +189,8 @@ class HomeScreenState extends State {
         buildBottomNavigationBarButton(Icons.home, "Ana Sayfa"),
         buildBottomNavigationBarButton(Icons.receipt_long, "Harcamalar"),
         buildBottomNavigationBarButton(Icons.history, "Aylık Özet"),
-        buildBottomNavigationBarButton(Icons.supervised_user_circle_sharp, "Kullanıcılar"),
+        buildBottomNavigationBarButton(
+            Icons.supervised_user_circle_sharp, "Kullanıcılar"),
       ],
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
@@ -118,10 +207,22 @@ class HomeScreenState extends State {
     );
   }
 
+  FloatingActionButton buildFloatingActionButton() {
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.pushNamed(context, '/add-expense');
+      },
+      child: const Icon(
+        Icons.add,
+        size: 22,
+      ),
+      backgroundColor: const Color(0xFF171645),
+    );
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
-
 }

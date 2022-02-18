@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,6 +31,7 @@ class AddExpensePageState extends State {
         IconButton(
           icon: Icon(Icons.close,color: Colors.black,),
           onPressed: (){
+            ScaffoldMessenger.of(context).clearMaterialBanners();
             Navigator.pop(context);
           },
         ),
@@ -172,34 +174,47 @@ class AddExpensePageState extends State {
           height: 40,
         ),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
               children: [
-                Row(
-                  children: [
-                    Icon(Icons.calendar_today_rounded),
-                    const SizedBox(width: 20),
-                    Text(
-                        _date.day.toString() +
-                            "." +
-                            _date.month.toString() +
-                            "." +
-                            _date.year.toString(),
-                        style: const TextStyle(fontWeight: FontWeight.w900)),
-                  ],
+                const Icon(Icons.calendar_today_rounded),
+                const SizedBox(width: 4),
+                TextButton(
+                  onPressed: (){
+                    _showDatePicker(context);
+                  },
+                  child: Text(
+                      _date.day.toString() +
+                          "." +
+                          _date.month.toString() +
+                          "." +
+                          _date.year.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.w900,color: Colors.black)
+                  ),
                 ),
               ],
             ),
-            const SizedBox(width: 20,),
-            IconButton(
-                onPressed: () {
-                  _showDatePicker(context);
-                },
-                icon: const Icon(Icons.change_circle_rounded))
+            TextButton(
+              onPressed: (){
+                _showTimePicker(context);
+              },
+              child: Row(
+                children: [
+                  const Icon(Icons.timelapse_rounded,color: Colors.black,),
+                  const SizedBox(width: 10),
+                  Text(
+                      _date.hour.toString() +
+                          ":" +
+                          _date.minute.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.w900)
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
+
         const SizedBox(
           height: 40.0,
         ),
@@ -213,7 +228,7 @@ class AddExpensePageState extends State {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Ekle',
                 style: TextStyle(color: Colors.white),
               ),
@@ -239,7 +254,7 @@ class AddExpensePageState extends State {
   void _showDatePicker(BuildContext context) {
     DatePicker.showDatePicker(context,
         showTitleActions: true,
-        minTime: DateTime(1000, 1, 1),
+        minTime: DateTime(2000, 1, 1),
         maxTime: DateTime(3100, 6, 7),
         //onChanged: (date) {},
         onConfirm: (date) {
@@ -247,15 +262,32 @@ class AddExpensePageState extends State {
           _date = date;
           });
         },
-        currentTime: DateTime.now(), locale: LocaleType.tr);
+        theme: const DatePickerTheme(backgroundColor: Colors.white),
+        currentTime: DateTime.now(), locale: LocaleType.tr,
+    );
+  }
+
+  void _showTimePicker(BuildContext context){
+        DatePicker.showTimePicker(context,
+            showTitleActions: true,
+            //onChanged: (date) {},
+            onConfirm: (date) {
+              setState(() {
+                _date = date;
+              });
+            },
+            currentTime: DateTime.now(), locale: LocaleType.tr,
+            theme: const DatePickerTheme(backgroundColor: Colors.white),
+        );
   }
 
   MaterialBanner showBanner(BuildContext context) {
-    return const MaterialBanner(
-      backgroundColor: Color(0xFF57CD5D),
-      content: Text("Harcama Ekleme Başarılı"),
+    return MaterialBanner(
+      backgroundColor: Color(0xFF4AA366),
+      contentTextStyle: TextStyle(color: Colors.white,fontSize: 16.0,fontWeight: FontWeight.w800),
+      content: Text("Harcama Ekleme Başarılı !"),
       actions: [
-        Text(""),
+        const Text(""),
       ],
     );
   }

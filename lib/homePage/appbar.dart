@@ -7,25 +7,25 @@ class HomeAppBar extends AppBar{
 
   AppBar buildAppBar() {
     return AppBar(
+      centerTitle: true,
       backgroundColor: Colors.white,
       shadowColor: Colors.transparent,
       leading: IconButton(
           onPressed: () {
-
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.menu,
             color: Colors.black54,
-          )),
-      title: Center(
-          child: Text(
-            "LOGO",
-            style: const TextStyle(
-                color: Colors.black,
-                letterSpacing: 2.0,
-                fontWeight: FontWeight.w800,
-                fontSize: 20.0),
-          )),
+          )
+      ),
+      title: const Text(
+        "LOGO",
+        style: TextStyle(
+            color: Colors.black,
+            letterSpacing: 2.0,
+            fontWeight: FontWeight.w800,
+            fontSize: 20.0),
+      ),
       actions: [
         CircleAvatar(
           child: const Icon(

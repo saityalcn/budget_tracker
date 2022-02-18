@@ -48,36 +48,48 @@ class HomeBodyState extends State{
   Widget buildLastExpensesArea() {
     return Column(
       children: [
-        Row(
-          children: [
-            TextButton(
-              onPressed: () {
-                print("object");
-              },
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 15.0,
-                  ),
-                  Text("Son Harcamalar", style: const TextStyle(fontSize: 15.0)),
-                  const SizedBox(
-                    width: 3.0,
-                  ),
-                  const Icon(
-                    Icons.arrow_forward,
-                    size: 14.0,
-                  ),
-                ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text("Son Harcamalar", style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w800,color: Colors.black)),
+              const SizedBox(
+                width: 3.0,
               ),
-            ),
-          ],
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/expenses");
+                },
+                child: Row(
+                  children: const [
+                    SizedBox(
+                      width: 15.0,
+                    ),
+                    Text("Tümü", style: const TextStyle(fontSize: 15.0,color: Colors.black54)),
+                    SizedBox(
+                      width: 3.0,
+                    ),
+                    Icon(
+                      Icons.arrow_forward,
+                      size: 14.0,
+                        color: Colors.black54
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-        ListView.builder(
-          itemBuilder: (BuildContext context, int index) {
-            return buildListItem();
-          },
-          itemCount: 4,
-          shrinkWrap: true,
+        SizedBox(
+          height: 300,
+          child: ListView.builder(
+            itemBuilder: (BuildContext context, int index) {
+              return buildListItem();
+            },
+            itemCount: 6,
+            shrinkWrap: true,
+          ),
         )
       ],
     );
