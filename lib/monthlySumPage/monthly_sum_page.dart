@@ -12,6 +12,7 @@ class MonthlySumPageState extends State {
   List<String> months = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 18.0,horizontal: 8.0),
       child: SingleChildScrollView(
@@ -19,7 +20,7 @@ class MonthlySumPageState extends State {
         child: Column(
           children: [
             buildFilterAndSortArea(),
-            buildYearSumArea("2022",3),
+            buildYearSumArea("2022",now.month),
             buildYearSumArea("2021",12),
             buildYearSumArea("2020",12),
             buildYearSumArea("2019",12),

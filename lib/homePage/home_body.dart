@@ -16,11 +16,14 @@ class HomeBodyState extends State{
   Widget buildBody() {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
-      child: Column(
-        children: [
-          Center(child: buildTotalExpenseArea(1096.76)),
-          buildLastExpensesArea(),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20.0),
+        child: Column(
+          children: [
+            Center(child: buildTotalExpenseArea(1096.76)),
+            buildLastExpensesArea(),
+          ],
+        ),
       ),
     );
   }
@@ -29,7 +32,7 @@ class HomeBodyState extends State{
     return Column(
       children: [
         const SizedBox(
-          height: 60.0,
+          height: 80.0,
         ),
         Text(
           "₺" + totalExpense.toString(),
@@ -39,13 +42,14 @@ class HomeBodyState extends State{
               fontWeight: FontWeight.w800),
         ),
         const SizedBox(
-          height: 60.0,
+          height: 80.0,
         ),
       ],
     );
   }
 
   Widget buildLastExpensesArea() {
+    int itemsLength = 6;
     return Column(
       children: [
         Padding(
@@ -82,13 +86,13 @@ class HomeBodyState extends State{
           ),
         ),
         SizedBox(
-          height: 300,
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
-              return buildListItem();
+              return buildListItem("Lorem Ipsum", "Lorem Ipsum");
             },
-            itemCount: 6,
+            itemCount: (itemsLength < 5) ? itemsLength : 5,
             shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
           ),
         )
       ],
@@ -96,7 +100,7 @@ class HomeBodyState extends State{
   }
 
 
-  Widget buildListItem() {
+  Widget buildListItem(String title, String nameOfExpenser) {
     double price = 12.89;
     return ListTile(
       onTap: () {
@@ -106,12 +110,12 @@ class HomeBodyState extends State{
         backgroundColor: Colors.grey.withOpacity(0.2),
       ),
       title: Text(
-        "Migros",
+        title,
         style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
       ),
-      subtitle: Text("Sait (Harcama Yapanın Adı)"),
+      subtitle: Text(nameOfExpenser),
       trailing: Text(
-        "₺" + price.toString(),
+        "\$" + price.toString(),
         style: const TextStyle(
             color: Color(0xFF000000),
             fontWeight: FontWeight.bold,
