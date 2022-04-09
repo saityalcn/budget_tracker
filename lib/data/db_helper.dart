@@ -46,7 +46,7 @@ class DbHelper {
   updateGoal(Expense expense) async {
     final db = await database;
     var res = await db.update("expenses", expense.toMap(),
-        where: "titleOfExpense = ?", whereArgs: [expense.tit]);
+        where: "titleOfExpense = ?", whereArgs: [expense.titleOfExpense]);
     return res;
   }
 
@@ -55,9 +55,7 @@ class DbHelper {
     var result = await db.delete("expenses",where: "id = ?", whereArgs: [id]);
   }
 
-
-  /*
-    get Expenses of a user
-   */
+  getExpensesOfUser(String nameOfUser){
+  }
 
 }

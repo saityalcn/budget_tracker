@@ -115,7 +115,7 @@ class HomeBodyState extends State{
       ),
       subtitle: Text(nameOfExpenser),
       trailing: Text(
-        "\$" + price.toString(),
+        "₺" + price.toString(),
         style: const TextStyle(
             color: Color(0xFF000000),
             fontWeight: FontWeight.bold,

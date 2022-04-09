@@ -112,30 +112,16 @@ class HomeScreenState extends State {
                 },
               ),
             ),
-            /*
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Üyelikler",style: TextStyle(color: Colors.white),),
-                TextButton(
-                  onPressed: (){},
-                  child: Row(
-                    children: [
-                      Text("Tümü"),
-                      Icon(Icons.arrow_forward),
-                    ],
-                  ),
-                ),
-              ],
-            ),*/
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  buildSubscriptionListItem("https://www.zorluenerji.com.tr/uploads/img/logo/zorlu-energy-solutions.png"),
-                  buildSubscriptionListItem("https://www.sisecam.com.tr/tr/PublishingImages/news-room/logos/Sisecam_Logo.png"),
-                  buildSubscriptionListItem("https://bayraks.net/wp-content/uploads/bb-logo-turkish-airlines-beyaz.jpg"),
-                  buildSubscriptionListItem("https://marka-logo.com/wp-content/uploads/2020/11/Tesla-Logo.png"),
+                  buildSubscriptionListItem("https://via.placeholder.com/400x400"),
+                  buildSubscriptionListItem("https://via.placeholder.com/400x400"),
+                  buildSubscriptionListItem("https://via.placeholder.com/400x400"),
+                  buildSubscriptionListItem("https://via.placeholder.com/400x400"),
+                  buildSubscriptionListItem("https://via.placeholder.com/400x400"),
+                  buildSubscriptionListItem("https://via.placeholder.com/400x400"),
                 ],
               ),
             ),

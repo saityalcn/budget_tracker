@@ -35,12 +35,13 @@ class GroupsPageState extends State{
         child: Column(
           children: [
             const SizedBox(height: 30.0,),
-            buildGroupContainer("Zorlu Enerji"),
-            buildGroupContainer("Şişecam"),
-            buildGroupContainer("Turkish Airlines"),
-            buildGroupContainer("Tesla"),
-            buildGroupContainer("Yılmaz Ailesi"),
-            buildGroupContainer("Koru Ailesi"),
+            buildGroupContainer("Lorem Ipsum"),
+            buildGroupContainer("Lorem Ipsum"),
+            buildGroupContainer("Lorem Ipsum"),
+            buildGroupContainer("Lorem Ipsum"),
+            buildGroupContainer("Lorem Ipsum"),
+            buildGroupContainer("Lorem Ipsum"),
+            buildGroupContainer("Lorem Ipsum"),
             const SizedBox(height: 30.0,),
           ],
         ),
@@ -54,7 +55,7 @@ class GroupsPageState extends State{
       decoration: BoxDecoration(
         color: const Color(0xFFFFFFFF),
         boxShadow: [BoxShadow(color: const Color(0xFF171645).withOpacity(0.3),offset: const Offset(1.0,1.0),blurRadius: 22.0),],
-        //image: const DecorationImage(image: AssetImage(""), fit: BoxFit.cover),
+        image: DecorationImage(image: NetworkImage("https://via.placeholder.com/400x400"), fit: BoxFit.cover),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Padding(

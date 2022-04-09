@@ -48,7 +48,7 @@ class ExpensePageState extends State{
             const SizedBox(height: 20.0),
             CircleAvatar(backgroundColor: Colors.blueGrey,),
             const SizedBox(height: 40.0,),
-            Text("BİM Birleşik Mağazalar A.Ş.",style: TextStyle(color: Colors.black, fontSize: 16.0,fontWeight: FontWeight.w800),),
+            Text("Lorem",style: TextStyle(color: Colors.black, fontSize: 16.0,fontWeight: FontWeight.w800),),
             const SizedBox(height: 10.0),
             Text("Market Harcamaları"),
             const SizedBox(height: 50.0),

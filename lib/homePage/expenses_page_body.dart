@@ -52,13 +52,6 @@ class ExpensesPageBodyState extends State {
               fontSize: 18.0,
               fontWeight: FontWeight.w800),
         ),
-        /*Text(
-          "₺${totalExpense.toString()}",
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 18.0,
-              fontWeight: FontWeight.w800),
-        ),*/
       ],
     );
   }
@@ -69,15 +62,15 @@ class ExpensesPageBodyState extends State {
         Navigator.pushNamed(context, '/expenseDetailPage');
       },
       leading: CircleAvatar(
-        child: Image.network("https://pbs.twimg.com/profile_images/1465239664802025477/W7BQLaN2_400x400.jpg"),
+        child: Image.network("https://via.placeholder.com/400x400"),
         backgroundColor: Colors.grey.withOpacity(0.2),
       ),
       title: Text(
-        "Migros",
+        "Lorem",
         style:
             const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
       ),
-      subtitle: Text("Sait (Harcama Yapanın Adı)"),
+      subtitle: Text("Lorem Ipsum"),
       trailing: Text(
         "₺" + price.toString(),
         style: const TextStyle(
